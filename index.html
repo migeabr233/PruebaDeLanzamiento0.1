@@ -242,6 +242,7 @@
       function App() {
         const [cart, setCart] = useState([]);
         const [isCartOpen, setIsCartOpen] = useState(false);
+        const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
         const [selectedProduct, setSelectedProduct] = useState(null);
         const [activeFilter, setActiveFilter] = useState('all');
         const [toastMessage, setToastMessage] = useState(null);
@@ -335,33 +336,68 @@
               </div>
             )}
 
-            <header className="sticky top-0 z-40 bg-[#F9F7EB]/90 backdrop-blur-md border-b border-[#D7CAA8]/40 transition-all duration-300 overflow-visible">
-              <div className="max-w-7xl mx-auto px-6 h-24 flex items-center justify-between gap-6 relative">
-                <a href="#" className="flex items-center flex-shrink-0 absolute left-6 top-1/2 -translate-y-1/2">
-                  <img src="./bcappi.jpeg" alt="B.caapi" className="h-64 md:h-72 object-contain" />
+            <header className="sticky top-0 z-40 bg-[#F9F7EB]/90 backdrop-blur-md border-b border-[#D7CAA8]/40 transition-all duration-300">
+              {/* MÓVIL */}
+              <div className="md:hidden max-w-7xl mx-auto px-4 h-28 flex items-center justify-between gap-3">
+                <a href="#" className="flex items-center flex-shrink-0">
+                  <img src="./bcappi.jpeg" alt="B.caapi" className="h-24 object-contain" />
+                </a>
+                <div className="flex items-center space-x-2">
+                  <button
+                    onClick={() => setIsCartOpen(true)}
+                    className="relative p-2 text-[#603F2E] hover:text-[#7F7C51] transition-colors"
+                    aria-label="Abrir Carrito"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+                    </svg>
+                    {cart.length > 0 && (
+                      <span className="absolute -top-1 -right-1 bg-[#7F7C51] text-[#F9F7EB] text-[10px] w-5 h-5 rounded-full flex items-center justify-center font-bold tracking-tight animate-bounce">
+                        {cart.reduce((total, item) => total + item.qty, 0)}
+                      </span>
+                    )}
+                  </button>
+                  <button
+                    onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                    className="p-2 text-[#603F2E] hover:text-[#7F7C51] transition-colors"
+                    aria-label="Menú"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+
+              {/* DESKTOP: Logo grande*/}
+              <div className="hidden md:flex max-w-7xl mx-auto px-6 min-h-40 items-center justify-between gap-8">
+                <a href="#" className="flex items-center flex-shrink-0">
+                  <img src="./bcappi.jpeg" alt="B.caapi" className="h-40 object-contain" />
                 </a>
 
-                <nav className="hidden md:flex items-center space-x-10 text-xs tracking-[0.2em] uppercase font-semibold bg-[#7F7C51] text-[#F9F7EB] px-4 py-2 rounded-full flex-shrink-0 ml-[19rem]">
+                {/* Desktop Navigation */}
+                <nav className="flex items-center space-x-8 text-xs tracking-[0.2em] uppercase font-semibold bg-[#7F7C51] text-[#F9F7EB] px-8 py-3 rounded-full">
                   <a href="#historia" className="hover:text-[#F9F7EB]/90 transition-colors">La Marca</a>
                   <a href="#colecciones" className="hover:text-[#F9F7EB]/90 transition-colors">Colecciones</a>
                   <a href="#productos" className="hover:text-[#F9F7EB]/90 transition-colors">Accesorios</a>
                   <a href="#proceso" className="hover:text-[#F9F7EB]/90 transition-colors">Artesanía</a>
                   <a href="#contacto" className="hover:text-[#F9F7EB]/90 transition-colors">Contacto</a>
-                </nav>
-
-                <div className="flex items-center space-x-2">
+                  <span className="border-l border-[#F9F7EB]/40"></span>
                   <a
                     href={`https://wa.me/${B_CAAPI_DATA.brandInfo.whatsapp}`}
                     target="_blank"
                     rel="noreferrer"
-                    className="hidden lg:flex items-center space-x-2 text-xs uppercase tracking-widest bg-[#7F7C51] hover:bg-white hover:text-[#603F2E] text-white px-4 py-2 rounded-full transition-all duration-300 flex-shrink-0"
+                    className="flex items-center space-x-2 hover:text-[#F9F7EB]/90 transition-colors"
                   >
                     <span>Escríbenos</span>
                     <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.513 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.73-1.455L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.37 9.864-9.799.002-2.63-1.023-5.101-2.885-6.963C16.59 1.98 14.122.955 11.5.954 6.07.954 1.646 5.325 1.642 10.754c-.001 1.702.449 3.361 1.301 4.82L1.933 20.35l4.714-1.196zm11.385-4.614c-.29-.145-1.711-.844-1.976-.94-.266-.097-.459-.145-.653.145-.193.29-.749.94-.917 1.133-.169.193-.338.217-.628.072-.29-.145-1.226-.452-2.335-1.441-.863-.77-1.446-1.72-1.615-2.01-.169-.29-.018-.447.127-.591.131-.13.29-.338.435-.507.145-.169.193-.29.29-.483.097-.193.048-.361-.024-.506-.072-.145-.653-1.573-.895-2.152-.235-.567-.475-.49-.653-.499-.169-.008-.362-.01-.555-.01-.193 0-.507.072-.772.361-.266.29-1.014.991-1.014 2.415 0 1.424 1.038 2.802 1.182 2.995.145.193 2.043 3.12 4.949 4.375.691.299 1.231.478 1.652.612.694.221 1.327.19 1.827.115.556-.084 1.711-.699 1.952-1.374.24-.675.24-1.253.169-1.374-.073-.121-.266-.193-.556-.338z" />
                     </svg>
                   </a>
+                </nav>
 
+                {/* Desktop Controls */}
+                <div className="flex items-center space-x-3">
                   <button
                     onClick={() => setIsCartOpen(true)}
                     className="relative p-2 text-[#603F2E] hover:text-[#7F7C51] transition-colors focus:outline-none"
@@ -378,6 +414,25 @@
                   </button>
                 </div>
               </div>
+
+              {/* Mobile Menu */}
+              {isMobileMenuOpen && (
+                <div className="md:hidden border-t border-[#D7CAA8]/40 bg-[#F9F7EB] px-4 py-4">
+                  <nav className="flex flex-col space-y-3 text-sm tracking-[0.1em] uppercase font-semibold text-[#603F2E]">
+                    <a href="#historia" className="hover:text-[#7F7C51] transition-colors" onClick={() => setIsMobileMenuOpen(false)}>La Marca</a>
+                    <a href="#colecciones" className="hover:text-[#7F7C51] transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Colecciones</a>
+                    <a href="#productos" className="hover:text-[#7F7C51] transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Accesorios</a>
+                    <a href="#proceso" className="hover:text-[#7F7C51] transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Artesanía</a>
+                    <a href="#contacto" className="hover:text-[#7F7C51] transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Contacto</a>
+                    <a href={`https://wa.me/${B_CAAPI_DATA.brandInfo.whatsapp}`} target="_blank" rel="noreferrer" className="flex items-center space-x-2 text-[#7F7C51] hover:text-[#603F2E] transition-colors pt-2 border-t border-[#D7CAA8]/30" onClick={() => setIsMobileMenuOpen(false)}>
+                      <span>WhatsApp</span>
+                      <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.513 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.73-1.455L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.37 9.864-9.799.002-2.63-1.023-5.101-2.885-6.963C16.59 1.98 14.122.955 11.5.954 6.07.954 1.646 5.325 1.642 10.754c-.001 1.702.449 3.361 1.301 4.82L1.933 20.35l4.714-1.196zm11.385-4.614c-.29-.145-1.711-.844-1.976-.94-.266-.097-.459-.145-.653.145-.193.29-.749.94-.917 1.133-.169.193-.338.217-.628.072-.29-.145-1.226-.452-2.335-1.441-.863-.77-1.446-1.72-1.615-2.01-.169-.29-.018-.447.127-.591.131-.13.29-.338.435-.507.145-.169.193-.29.29-.483.097-.193.048-.361-.024-.506-.072-.145-.653-1.573-.895-2.152-.235-.567-.475-.49-.653-.499-.169-.008-.362-.01-.555-.01-.193 0-.507.072-.772.361-.266.29-1.014.991-1.014 2.415 0 1.424 1.038 2.802 1.182 2.995.145.193 2.043 3.12 4.949 4.375.691.299 1.231.478 1.652.612.694.221 1.327.19 1.827.115.556-.084 1.711-.699 1.952-1.374.24-.675.24-1.253.169-1.374-.073-.121-.266-.193-.556-.338z" />
+                      </svg>
+                    </a>
+                  </nav>
+                </div>
+              )}
             </header>
 
             <section className="relative min-h-[90vh] flex items-center justify-center py-16 px-6 overflow-hidden bg-gradient-to-b from-[#F9F7EB] via-[#EEE6D8]/60 to-[#F9F7EB]">
@@ -1114,4 +1169,3 @@
     </script>
   </body>
 </html>
-
