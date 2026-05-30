@@ -344,14 +344,14 @@
 
             <header className="sticky top-0 z-40 bg-[#F9F7EB]/90 backdrop-blur-md border-b border-[#D7CAA8]/40 transition-all duration-300">
               {/* MÓVIL */}
-              <div className="md:hidden max-w-7xl mx-auto px-4 py-1 flex items-center justify-between gap-3">
+              <div className="md:hidden max-w-7xl mx-auto px-4 py-0 flex items-center justify-between gap-2">
                 <a href="#" className="flex items-center flex-shrink-0">
-                  <img src="./bcappi.jpeg" alt="B.caapi" className="h-48 object-contain" />
+                  <img src="./bcappi.jpeg" alt="B.caapi" className="h-44 object-contain" />
                 </a>
                 <div className="flex items-center space-x-2">
                   <button
                     onClick={() => setIsCartOpen(true)}
-                    className="relative p-1.5 text-[#603F2E] hover:text-[#7F7C51] transition-colors"
+                    className="relative p-0.5 text-[#603F2E] hover:text-[#7F7C51] transition-colors"
                     aria-label="Abrir Carrito"
                   >
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
@@ -365,7 +365,7 @@
                   </button>
                   <button
                     onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                    className="p-1.5 text-[#603F2E] hover:text-[#7F7C51] transition-colors"
+                    className="p-0.5 text-[#603F2E] hover:text-[#7F7C51] transition-colors"
                     aria-label="Menú"
                   >
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
@@ -376,7 +376,7 @@
               </div>
 
               {/* DESKTOP: Logo grande*/}
-              <div className="hidden md:flex max-w-7xl mx-auto px-6 md:min-h-[14rem] items-center justify-between gap-8">
+              <div className="hidden md:flex max-w-7xl mx-auto px-6 items-center justify-between gap-8">
                 <a href="#" className="flex items-center flex-shrink-0">
                   <img src="./bcappi.jpeg" alt="B.caapi" className="h-[15rem] object-contain" />
                 </a>
