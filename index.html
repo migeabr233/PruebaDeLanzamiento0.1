@@ -331,10 +331,6 @@
         // ---------- UI principal del App ----------
         return (
           <div className="min-h-screen bg-[#F9F7EB] text-[#5A382B] font-sans-boho relative overflow-x-hidden antialiased">
-            <div className="bg-[#2F301F] text-[#F9F7EB] py-2 px-4 text-center text-xs tracking-[0.2em] uppercase font-medium">
-              ✨ Envíos gratis en órdenes superiores a ${B_CAAPI_DATA.brandInfo.shippingThreshold} USD en todo el país ✨
-            </div>
-
             {toastMessage && (
               <div className="fixed bottom-6 right-6 z-50 bg-[#5A382B] text-[#F9F7EB] px-6 py-4 rounded-xl shadow-2xl flex items-center space-x-3 border border-[#8F7D63]/20 animate-fade-in transition-all">
                 <span className="text-[#8F7D63]">🌿</span>
@@ -346,7 +342,7 @@
               {/* MÓVIL */}
               <div className="md:hidden max-w-7xl mx-auto px-4 py-1 flex items-center justify-between gap-3">
                 <a href="#" className="flex items-center flex-shrink-0">
-                  <img src="./bcappi.jpeg" alt="B.caapi" className="h-36 object-contain" />
+                  <img src="./bcappi.jpeg" alt="B.caapi" className="h-40 object-contain" />
                 </a>
                 <div className="flex items-center space-x-2">
                   <button
@@ -376,9 +372,9 @@
               </div>
 
               {/* DESKTOP: Logo grande*/}
-              <div className="hidden md:flex max-w-7xl mx-auto px-6 min-h-40 items-center justify-between gap-8">
+              <div className="hidden md:flex max-w-7xl mx-auto px-6 md:min-h-[12rem] items-center justify-between gap-8">
                 <a href="#" className="flex items-center flex-shrink-0">
-                  <img src="./bcappi.jpeg" alt="B.caapi" className="h-40 object-contain" />
+                  <img src="./bcappi.jpeg" alt="B.caapi" className="h-48 object-contain" />
                 </a>
 
                 {/* Desktop Navigation */}
