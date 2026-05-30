@@ -48,8 +48,11 @@
     <div id="root"></div>
 
     <script type="text/babel">
+      // ---------- React App Setup and Global Data ----------
+      // Usamos React desde CDN y Babel para compilar JSX en el navegador.
       const { useState, useEffect } = React;
 
+      // Datos de la marca / colección / productos / testimonios.
       const B_CAAPI_DATA = {
         brandInfo: {
           name: "B.caapi",
@@ -240,6 +243,7 @@
       };
 
       function App() {
+        // ---------- Estado del componente ----------
         const [cart, setCart] = useState([]);
         const [isCartOpen, setIsCartOpen] = useState(false);
         const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -249,6 +253,7 @@
         const [newsletterEmail, setNewsletterEmail] = useState('');
         const [contactForm, setContactForm] = useState({ name: '', email: '', message: '' });
 
+        // ---------- Efectos y temporizadores ----------
         useEffect(() => {
           if (toastMessage) {
             const timer = setTimeout(() => setToastMessage(null), 3500);
@@ -323,6 +328,7 @@
           triggerToast('¡Enlace a WhatsApp generado con tu consulta! 💬');
         };
 
+        // ---------- UI principal del App ----------
         return (
           <div className="min-h-screen bg-[#F9F7EB] text-[#5A382B] font-sans-boho relative overflow-x-hidden antialiased">
             <div className="bg-[#2F301F] text-[#F9F7EB] py-2 px-4 text-center text-xs tracking-[0.2em] uppercase font-medium">
@@ -338,9 +344,9 @@
 
             <header className="sticky top-0 z-40 bg-[#F9F7EB]/90 backdrop-blur-md border-b border-[#D7CAA8]/40 transition-all duration-300">
               {/* MÓVIL */}
-              <div className="md:hidden max-w-7xl mx-auto px-4 h-28 flex items-center justify-between gap-3">
+              <div className="md:hidden max-w-7xl mx-auto px-4 h-32 flex items-center justify-between gap-3">
                 <a href="#" className="flex items-center flex-shrink-0">
-                  <img src="./bcappi.jpeg" alt="B.caapi" className="h-24 object-contain" />
+                  <img src="./bcappi.jpeg" alt="B.caapi" className="h-28 object-contain" />
                 </a>
                 <div className="flex items-center space-x-2">
                   <button
@@ -435,6 +441,7 @@
               )}
             </header>
 
+            {/* HERO PRINCIPAL */}
             <section className="relative min-h-[90vh] flex items-center justify-center py-16 px-6 overflow-hidden bg-gradient-to-b from-[#F9F7EB] via-[#EEE6D8]/60 to-[#F9F7EB]">
               <div className="absolute inset-0 opacity-10 pointer-events-none">
                 <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
@@ -515,6 +522,7 @@
               </div>
             </section>
 
+            {/* VALORES DE LA MARCA */}
             <section className="bg-[#EEE6D8]/40 py-16 px-6 border-y border-[#D7CAA8]/30">
               <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12">
                 {B_CAAPI_DATA.brandValues.map((value, i) => (
@@ -543,6 +551,7 @@
               </div>
             </section>
 
+            {/* SECCIÓN DE HISTORIA / NOSOTROS */}
             <section id="historia" className="py-24 px-6 bg-[#F9F7EB]">
               <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                 <div className="grid grid-cols-2 gap-4 relative">
@@ -603,6 +612,7 @@
               </div>
             </section>
 
+            {/* SECCIÓN DE COLECCIONES */}
             <section id="colecciones" className="py-24 px-6 bg-[#EEE6D8]/30 border-y border-[#D7CAA8]/40">
               <div className="max-w-7xl mx-auto space-y-16">
                 <div className="text-center max-w-2xl mx-auto space-y-4">
@@ -646,6 +656,7 @@
               </div>
             </section>
 
+            {/* SECCIÓN DE PRODUCTOS / CATÁLOGO */}
             <section id="productos" className="py-24 px-6 bg-[#F9F7EB]">
               <div className="max-w-7xl mx-auto space-y-16">
                 <div className="flex flex-col md:flex-row items-center justify-between gap-8 pb-4 border-b border-[#D7CAA8]/40">
